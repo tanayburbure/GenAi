@@ -1,0 +1,18 @@
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Ignore all history folders at every level
+.history/
+
+# Node.js dependencies
+node_modules/
+
+# Build files
+dist/
+build/
+
+# Debug logs
+npm-debug.log*
