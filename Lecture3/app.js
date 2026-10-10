@@ -1,13 +1,26 @@
 import { GoogleGenAI } from "@google/genai";
-import 'dotenv/config' ;
+import "dotenv/config";
+import readlineSync from "readline-sync";
 
-const apiKey = process.env.GEMINI_API_KEY;
-const ai = new GoogleGenAI({ apiKey });
+const ai = new GoogleGenAI({});
 
-const interaction = await ai.interactions.create({
-  model: "gemini-3.8-flash",
-  input: "What's my age ?'",
-  system_instruction: `Current user's name is Tanay Burbure my age is 22 and current date is ${new Date()}`,
-});
+async function main() {
+  const chat = await ai.chats.create({
+    model: "gemini-3.7-flash",
+    history : [],
+  });
 
-console.log(interaction.output_text);
+  while(true){
+    const question = readlineSync.question("Ask Me Anything ?\n");
+    console.log("Sending request.....");
+    if(question == 'exit'){
+        break;
+    }
+    const response = await chat.sendMessage({
+      message : question 
+    })
+    console.log("Response : ",response.text)
+  }
+}
+
+await main();
