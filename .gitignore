@@ -6,7 +6,6 @@
 
 # Ignore all history folders at every level
 .history/
-
 # Node.js dependencies
 node_modules/
 
